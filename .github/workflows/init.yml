@@ -50,7 +50,7 @@ jobs:
                 contains(github.event.comment.body, '/init') &&
                 contains(fromJson('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
             )
-        uses: mydx-dev/gas-boost/.github/workflows/init.yml@v1
+        uses: mydx-dev/common-workflow/.github/workflows/init.yml@v1
         with:
             project_name: >-
                 ${{ inputs.project_name || github.event.repository.name }}

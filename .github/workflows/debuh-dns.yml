@@ -1,0 +1,31 @@
+name: Debug DNS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dns-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check DNS (nslookup)
+        run: |
+          nslookup contribution.usercontent.google.com
+
+      - name: Check DNS (dig)
+        run: |
+          dig contribution.usercontent.google.com || true
+
+      - name: Check curl
+        run: |
+          curl -I https://contribution.usercontent.google.com || true
+
+      - name: Check general connectivity
+        run: |
+          curl -I https://google.com
+          curl -I https://github.com
+      - name: Resolve and curl IP
+        run: |
+          IP=$(dig +short contribution.usercontent.google.com | head -n 1)
+          echo "IP=$IP"
+          curl -I https://$IP || true

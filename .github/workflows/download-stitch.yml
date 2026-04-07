@@ -1,0 +1,21 @@
+name: Download Stitch HTML
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download HTML from Stitch
+        run: |
+          URL="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2RmMzQzNDJhZDQzZDQ3ZjhhMDJmNWNiYzNmYTViMmQ1EgsSBxDzzu7ByBgYAZIBJAoKcHJvamVjdF9pZBIWQhQxMTU3NjMxODIwMDc5NTQ0MzYxNg&filename=&opi=89354086"
+
+          echo "Downloading..."
+          curl -L "$URL" -o output.html
+
+      - name: Show result
+        run: |
+          ls -lh
+          head -n 20 output.html
